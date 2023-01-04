@@ -66,38 +66,10 @@ fn main() {
     // let opcode = Opcode::AtomicStore;
     let mut cnt = 0;
     for opcode in Opcode::all() {
-        if opcode != &Opcode::AtomicStore {
+        if opcode != &Opcode::Iadd {
             continue;
         }
         dbg!(opcode);
-
-        if [
-            Opcode::Jump,
-            Opcode::Brz,
-            Opcode::Brnz,
-            Opcode::Brif,
-            Opcode::Brff,
-            Opcode::BrTable,
-            Opcode::Debugtrap,
-            Opcode::Trap,
-            Opcode::ResumableTrap,
-            Opcode::Trapif,
-            Opcode::Trapff,
-            Opcode::Return,
-            Opcode::Call,
-            Opcode::CallIndirect,
-            // TODO: Review this
-            Opcode::Vsplit,
-            Opcode::SwidenLow,
-            Opcode::SwidenHigh,
-            Opcode::UwidenLow,
-            Opcode::UwidenHigh,
-            Opcode::ExtractVector,
-        ]
-        .contains(opcode)
-        {
-            continue;
-        }
 
         let constraints = opcode.constraints();
         dbg!(constraints.num_fixed_value_arguments());
